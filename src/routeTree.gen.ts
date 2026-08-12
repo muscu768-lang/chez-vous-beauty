@@ -10,14 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as ReservationsRouteImport } from './routes/reservations'
 import { Route as EstheticienneIdRouteImport } from './routes/estheticienne.$id'
+import { Route as MessagesEstheticianIdRouteImport } from './routes/messages.$estheticianId'
 import { Route as ReserverServiceIdRouteImport } from './routes/reserver.$serviceId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfilRoute = ProfilRouteImport.update({
@@ -35,6 +42,11 @@ const EstheticienneIdRoute = EstheticienneIdRouteImport.update({
   path: '/estheticienne/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MessagesEstheticianIdRoute = MessagesEstheticianIdRouteImport.update({
+  id: '/messages/$estheticianId',
+  path: '/messages/$estheticianId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReserverServiceIdRoute = ReserverServiceIdRouteImport.update({
   id: '/reserver/$serviceId',
   path: '/reserver/$serviceId',
@@ -43,55 +55,69 @@ const ReserverServiceIdRoute = ReserverServiceIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/profil': typeof ProfilRoute
   '/reservations': typeof ReservationsRoute
   '/estheticienne/$id': typeof EstheticienneIdRoute
+  '/messages/$estheticianId': typeof MessagesEstheticianIdRoute
   '/reserver/$serviceId': typeof ReserverServiceIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/profil': typeof ProfilRoute
   '/reservations': typeof ReservationsRoute
   '/estheticienne/$id': typeof EstheticienneIdRoute
+  '/messages/$estheticianId': typeof MessagesEstheticianIdRoute
   '/reserver/$serviceId': typeof ReserverServiceIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/profil': typeof ProfilRoute
   '/reservations': typeof ReservationsRoute
   '/estheticienne/$id': typeof EstheticienneIdRoute
+  '/messages/$estheticianId': typeof MessagesEstheticianIdRoute
   '/reserver/$serviceId': typeof ReserverServiceIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/profil'
     | '/reservations'
     | '/estheticienne/$id'
+    | '/messages/$estheticianId'
     | '/reserver/$serviceId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/profil'
     | '/reservations'
     | '/estheticienne/$id'
+    | '/messages/$estheticianId'
     | '/reserver/$serviceId'
   id:
     | '__root__'
     | '/'
+    | '/auth'
     | '/profil'
     | '/reservations'
     | '/estheticienne/$id'
+    | '/messages/$estheticianId'
     | '/reserver/$serviceId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
   ProfilRoute: typeof ProfilRoute
   ReservationsRoute: typeof ReservationsRoute
   EstheticienneIdRoute: typeof EstheticienneIdRoute
+  MessagesEstheticianIdRoute: typeof MessagesEstheticianIdRoute
   ReserverServiceIdRoute: typeof ReserverServiceIdRoute
 }
 
@@ -102,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profil': {
@@ -125,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EstheticienneIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/messages/$estheticianId': {
+      id: '/messages/$estheticianId'
+      path: '/messages/$estheticianId'
+      fullPath: '/messages/$estheticianId'
+      preLoaderRoute: typeof MessagesEstheticianIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reserver/$serviceId': {
       id: '/reserver/$serviceId'
       path: '/reserver/$serviceId'
@@ -137,9 +177,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
   ProfilRoute: ProfilRoute,
   ReservationsRoute: ReservationsRoute,
   EstheticienneIdRoute: EstheticienneIdRoute,
+  MessagesEstheticianIdRoute: MessagesEstheticianIdRoute,
   ReserverServiceIdRoute: ReserverServiceIdRoute,
 }
 export const routeTree = rootRouteImport
