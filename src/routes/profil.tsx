@@ -115,7 +115,7 @@ function Profile() {
     return (
       <AppShell>
         <div className="px-6 pt-24 text-center">
-          <h1 className="text-3xl">Votre compte</h1>
+          <h1 className="font-serif text-3xl">Votre compte</h1>
           <p className="mt-2 text-sm text-muted-foreground">Connectez-vous pour gérer votre profil Edito.</p>
           <Link
             to="/auth"

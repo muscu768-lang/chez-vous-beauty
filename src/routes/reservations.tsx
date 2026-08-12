@@ -55,7 +55,7 @@ function Bookings() {
     <AppShell>
       <header className="px-6 pt-10">
         <p className="eyebrow">Mes</p>
-        <h1 className="text-[2rem] leading-tight">Réservations</h1>
+        <h1 className="font-serif text-[2rem] leading-tight">Réservations</h1>
       </header>
 
       <section className="mt-6 space-y-4 px-6">

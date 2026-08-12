@@ -123,7 +123,7 @@ function BookingPage() {
         </button>
         <div>
           <p className="eyebrow">Réservation</p>
-          <h1 className="text-2xl">{service.name}</h1>
+          <h1 className="font-serif text-2xl">{service.name}</h1>
         </div>
       </header>
 

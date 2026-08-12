@@ -90,7 +90,7 @@ function EstheticianPage() {
       </div>
 
       <div className="px-6 pt-14">
-        <h1 className="text-3xl">{pro.name}</h1>
+        <h1 className="font-serif text-3xl">{pro.name}</h1>
         <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
           <span className="inline-flex items-center gap-1 text-foreground">
             <Star className="size-4 fill-current" /> {Number(pro.rating).toFixed(1)}

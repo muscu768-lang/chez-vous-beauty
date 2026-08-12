@@ -64,7 +64,7 @@ function Discover() {
       <header className="px-6 pt-10">
         <p className="eyebrow">{firstName ? `Bonjour, ${firstName}` : "Bienvenue"}</p>
         <div className="mt-2 flex items-start justify-between gap-4">
-          <h1 className="max-w-[14ch] text-[2rem] leading-[1.1] font-normal">Trouvez votre esthéticienne.</h1>
+          <h1 className="max-w-[14ch] font-serif text-[2rem] leading-[1.1] font-normal">Trouvez votre esthéticienne.</h1>
           <span className="mt-1 inline-flex shrink-0 items-center gap-1 rounded-full bg-blush px-3 py-1.5 text-xs text-blush-foreground">
             <MapPin className="size-3.5" /> France
           </span>
