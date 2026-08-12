@@ -14,7 +14,359 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      addresses: {
+        Row: {
+          city: string | null
+          created_at: string
+          id: string
+          is_default: boolean
+          label: string
+          line1: string
+          postal_code: string | null
+          user_id: string
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          label: string
+          line1: string
+          postal_code?: string | null
+          user_id: string
+        }
+        Update: {
+          city?: string | null
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          label?: string
+          line1?: string
+          postal_code?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      bookings: {
+        Row: {
+          address: string | null
+          created_at: string
+          esthetician_id: string
+          esthetician_name: string
+          id: string
+          notes: string | null
+          payment_method: string | null
+          payment_status: string
+          price_cents: number
+          scheduled_at: string
+          service_id: string
+          service_name: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          esthetician_id: string
+          esthetician_name: string
+          id?: string
+          notes?: string | null
+          payment_method?: string | null
+          payment_status?: string
+          price_cents: number
+          scheduled_at: string
+          service_id: string
+          service_name: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          esthetician_id?: string
+          esthetician_name?: string
+          id?: string
+          notes?: string | null
+          payment_method?: string | null
+          payment_status?: string
+          price_cents?: number
+          scheduled_at?: string
+          service_id?: string
+          service_name?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_esthetician_id_fkey"
+            columns: ["esthetician_id"]
+            isOneToOne: false
+            referencedRelation: "estheticians"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      estheticians: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          categories: string[]
+          city: string
+          cover_url: string | null
+          created_at: string
+          headline: string | null
+          id: string
+          name: string
+          rating: number
+          reviews_count: number
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          categories?: string[]
+          city: string
+          cover_url?: string | null
+          created_at?: string
+          headline?: string | null
+          id?: string
+          name: string
+          rating?: number
+          reviews_count?: number
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          categories?: string[]
+          city?: string
+          cover_url?: string | null
+          created_at?: string
+          headline?: string | null
+          id?: string
+          name?: string
+          rating?: number
+          reviews_count?: number
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          body: string
+          created_at: string
+          esthetician_id: string
+          id: string
+          sender: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          esthetician_id: string
+          id?: string
+          sender: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          esthetician_id?: string
+          id?: string
+          sender?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_esthetician_id_fkey"
+            columns: ["esthetician_id"]
+            isOneToOne: false
+            referencedRelation: "estheticians"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payment_methods: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          id: string
+          is_default: boolean
+          label: string
+          last4: string | null
+          provider: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          is_default?: boolean
+          label: string
+          last4?: string | null
+          provider: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          is_default?: boolean
+          label?: string
+          last4?: string | null
+          provider?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      portfolio_items: {
+        Row: {
+          caption: string | null
+          esthetician_id: string
+          id: string
+          image_url: string
+          position: number
+        }
+        Insert: {
+          caption?: string | null
+          esthetician_id: string
+          id?: string
+          image_url: string
+          position?: number
+        }
+        Update: {
+          caption?: string | null
+          esthetician_id?: string
+          id?: string
+          image_url?: string
+          position?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portfolio_items_esthetician_id_fkey"
+            columns: ["esthetician_id"]
+            isOneToOne: false
+            referencedRelation: "estheticians"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          city: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          author_name: string
+          comment: string | null
+          created_at: string
+          esthetician_id: string
+          id: string
+          rating: number
+          user_id: string | null
+        }
+        Insert: {
+          author_name: string
+          comment?: string | null
+          created_at?: string
+          esthetician_id: string
+          id?: string
+          rating: number
+          user_id?: string | null
+        }
+        Update: {
+          author_name?: string
+          comment?: string | null
+          created_at?: string
+          esthetician_id?: string
+          id?: string
+          rating?: number
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_esthetician_id_fkey"
+            columns: ["esthetician_id"]
+            isOneToOne: false
+            referencedRelation: "estheticians"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          category: string
+          description: string | null
+          duration_min: number
+          esthetician_id: string
+          id: string
+          name: string
+          price_cents: number
+        }
+        Insert: {
+          category: string
+          description?: string | null
+          duration_min?: number
+          esthetician_id: string
+          id?: string
+          name: string
+          price_cents: number
+        }
+        Update: {
+          category?: string
+          description?: string | null
+          duration_min?: number
+          esthetician_id?: string
+          id?: string
+          name?: string
+          price_cents?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "services_esthetician_id_fkey"
+            columns: ["esthetician_id"]
+            isOneToOne: false
+            referencedRelation: "estheticians"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
