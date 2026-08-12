@@ -118,41 +118,59 @@ export type Database = {
       }
       estheticians: {
         Row: {
+          address: string | null
           avatar_url: string | null
           bio: string | null
           categories: string[]
           city: string
           cover_url: string | null
           created_at: string
+          google_place_url: string | null
           headline: string | null
           id: string
+          is_published: boolean
+          lat: number | null
+          lng: number | null
           name: string
+          owner_id: string | null
           rating: number
           reviews_count: number
         }
         Insert: {
+          address?: string | null
           avatar_url?: string | null
           bio?: string | null
           categories?: string[]
           city: string
           cover_url?: string | null
           created_at?: string
+          google_place_url?: string | null
           headline?: string | null
           id?: string
+          is_published?: boolean
+          lat?: number | null
+          lng?: number | null
           name: string
+          owner_id?: string | null
           rating?: number
           reviews_count?: number
         }
         Update: {
+          address?: string | null
           avatar_url?: string | null
           bio?: string | null
           categories?: string[]
           city?: string
           cover_url?: string | null
           created_at?: string
+          google_place_url?: string | null
           headline?: string | null
           id?: string
+          is_published?: boolean
+          lat?: number | null
+          lng?: number | null
           name?: string
+          owner_id?: string | null
           rating?: number
           reviews_count?: number
         }
@@ -299,6 +317,8 @@ export type Database = {
           esthetician_id: string
           id: string
           rating: number
+          source: string
+          source_url: string | null
           user_id: string | null
         }
         Insert: {
@@ -308,6 +328,8 @@ export type Database = {
           esthetician_id: string
           id?: string
           rating: number
+          source?: string
+          source_url?: string | null
           user_id?: string | null
         }
         Update: {
@@ -317,6 +339,8 @@ export type Database = {
           esthetician_id?: string
           id?: string
           rating?: number
+          source?: string
+          source_url?: string | null
           user_id?: string | null
         }
         Relationships: [
@@ -372,7 +396,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      owns_esthetician: { Args: { _esthetician_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
