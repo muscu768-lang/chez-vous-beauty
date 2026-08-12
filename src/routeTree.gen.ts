@@ -10,11 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ReservationsRouteImport } from './routes/reservations'
 import { Route as EstheticienneIdRouteImport } from './routes/estheticienne.$id'
+import { Route as ReserverServiceIdRouteImport } from './routes/reserver.$serviceId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReservationsRoute = ReservationsRouteImport.update({
+  id: '/reservations',
+  path: '/reservations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstheticienneIdRoute = EstheticienneIdRouteImport.update({
@@ -22,31 +29,50 @@ const EstheticienneIdRoute = EstheticienneIdRouteImport.update({
   path: '/estheticienne/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReserverServiceIdRoute = ReserverServiceIdRouteImport.update({
+  id: '/reserver/$serviceId',
+  path: '/reserver/$serviceId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/reservations': typeof ReservationsRoute
   '/estheticienne/$id': typeof EstheticienneIdRoute
+  '/reserver/$serviceId': typeof ReserverServiceIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/reservations': typeof ReservationsRoute
   '/estheticienne/$id': typeof EstheticienneIdRoute
+  '/reserver/$serviceId': typeof ReserverServiceIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/reservations': typeof ReservationsRoute
   '/estheticienne/$id': typeof EstheticienneIdRoute
+  '/reserver/$serviceId': typeof ReserverServiceIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/estheticienne/$id'
+  fullPaths:
+    '/' | '/reservations' | '/estheticienne/$id' | '/reserver/$serviceId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/estheticienne/$id'
-  id: '__root__' | '/' | '/estheticienne/$id'
+  to: '/' | '/reservations' | '/estheticienne/$id' | '/reserver/$serviceId'
+  id:
+    | '__root__'
+    | '/'
+    | '/reservations'
+    | '/estheticienne/$id'
+    | '/reserver/$serviceId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ReservationsRoute: typeof ReservationsRoute
   EstheticienneIdRoute: typeof EstheticienneIdRoute
+  ReserverServiceIdRoute: typeof ReserverServiceIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +84,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reservations': {
+      id: '/reservations'
+      path: '/reservations'
+      fullPath: '/reservations'
+      preLoaderRoute: typeof ReservationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/estheticienne/$id': {
       id: '/estheticienne/$id'
       path: '/estheticienne/$id'
@@ -65,12 +98,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EstheticienneIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reserver/$serviceId': {
+      id: '/reserver/$serviceId'
+      path: '/reserver/$serviceId'
+      fullPath: '/reserver/$serviceId'
+      preLoaderRoute: typeof ReserverServiceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ReservationsRoute: ReservationsRoute,
   EstheticienneIdRoute: EstheticienneIdRoute,
+  ReserverServiceIdRoute: ReserverServiceIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
