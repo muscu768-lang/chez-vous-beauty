@@ -62,7 +62,7 @@ function AuthPage() {
   return (
     <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col justify-center bg-background px-6">
       <p className="eyebrow">Edito</p>
-      <h1 className="mt-2 text-[2rem] leading-tight">
+      <h1 className="mt-2 font-serif text-[2rem] leading-tight">
         {mode === "signin" ? "Ravis de vous revoir." : "Créez votre compte."}
       </h1>
 
